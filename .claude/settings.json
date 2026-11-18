@@ -1,5 +1,17 @@
 {
   "permissions": {
     "defaultMode": "acceptEdits"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Где мы остановились (верхняя запись sessions.md):'; awk '/^<!--/{if(n)exit} /^## /{n++; if(n>1)exit} n==1' sessions.md 2>/dev/null | head -n 8"
+          }
+        ]
+      }
+    ]
   }
 }
